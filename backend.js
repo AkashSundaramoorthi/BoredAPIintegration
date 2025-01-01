@@ -8,7 +8,7 @@ const app = express();
 const api_url = 'https://bored-api-lz1n.vercel.app/';  // Correct API URL assignment
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public/"));
 var categories = ['Creative', 'Wellness', 'Cooking', 'Educational', 'Outdoor', 'Fitness', 'Community', 'Entertainment', 'Productive'];
 var participants = ['1-2', '1', '1-4', '1-10', '2-6', '2+', '1-6', '2-10'];
 
