@@ -20,7 +20,7 @@ app.get('/',(req,res) => {
 
 app.get('/update', async(req,res) => {
     try {
-        const response = await axios.get(`http://localhost:8000/all`);
+        const response = await axios.get(`https://bored-api-lz1n.vercel.app/all`);
         res.render('update.ejs',{
             page:'update',
             datas:response.data,
@@ -62,7 +62,7 @@ app.post('/update', async (req,res)=>{
         datatosend=duration;
         dataname='duration';
     }
-    axios.patch(`http://localhost:8000/cures/${key}`,{[dataname]:datatosend})
+    axios.patch(`https://bored-api-lz1n.vercel.app/cures/${key}`,{[dataname]:datatosend})
         .then(response => {
             res.render('update.ejs', {
                 datas: response.data.updatedCure,
@@ -82,7 +82,7 @@ app.get('/add',(req,res)=> {
 
 app.post('/add', async(req,res) => {
     var data = req.body;
-    axios.post(`http://localhost:8000/cures/create`,data)
+    axios.post(`https://bored-api-lz1n.vercel.app/cures/create`,data)
         .then(response => {
             res.render('add.ejs', {
                 page: 'added',
@@ -101,7 +101,7 @@ app.post("/", async (req, res) => {
     var people = req.body.people;
     try {
         if (!Category && !people) {
-            const response = await axios.get(`http://localhost:8000/random`);
+            const response = await axios.get(`https://bored-api-lz1n.vercel.app/random`);
             return res.render('index.ejs', {
                 data: response.data,
                 cat: categories,
@@ -113,7 +113,7 @@ app.post("/", async (req, res) => {
         }
         if (people && Category) {
             const response = await axios.get(
-                `http://localhost:8000/cures/filter?type=${Category}&participants=${people}`
+                `https://bored-api-lz1n.vercel.app/cures/filter?type=${Category}&participants=${people}`
             );
             return res.render('index.ejs', {
                 data: response.data,
@@ -126,7 +126,7 @@ app.post("/", async (req, res) => {
         }
         if (Category) {
             const response = await axios.get(
-                `http://localhost:8000/cures/filter?type=${Category}`
+                `https://bored-api-lz1n.vercel.app/cures/filter?type=${Category}`
             );
             return res.render('index.ejs', {
                 data: response.data,
@@ -139,7 +139,7 @@ app.post("/", async (req, res) => {
         }
         if (people) {
             const response = await axios.get(
-                `http://localhost:8000/cures/filter?participants=${people}`
+                `https://bored-api-lz1n.vercel.app/cures/filter?participants=${people}`
             );
             return res.render('index.ejs', {
                 data: response.data,
@@ -162,7 +162,7 @@ app.post("/", async (req, res) => {
 
 app.post("/delete", async(req,res)=>{
     const key = parseInt(req.body.delete);
-    axios.delete(`http://localhost:8000/cures/${key}`)
+    axios.delete(`https://bored-api-lz1n.vercel.app/cures/${key}`)
         .then(response => {
             res.redirect('/update');
         })
