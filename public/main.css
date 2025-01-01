@@ -1,0 +1,435 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*
+
+<------------------------------------------------------------------------------------------------------------------------------------------>
+<--------------------------------------------------------- SECTION: HEADER ---------------------------------------------------------------->
+<------------------------------------------------------------------------------------------------------------------------------------------>
+
+*/
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav_links{
+    display: flex;
+}
+
+.nav_links .Theme{
+    height: 37px;
+    margin-right: 10px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.nav_links .Theme:hover{
+    border: 1px solid rgb(178, 178, 178);
+    background-color: rgb(214, 214, 214);
+}
+
+.nav_links img{
+    filter: invert(1);
+    height: 22px;
+    width: 22px;
+    margin-top: 4px;
+}
+
+.nav_links ul{
+    list-style: none;
+}
+
+.nav_links li{
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.nav_links ul button{
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav_links ul button:hover{
+    border: 1px solid rgb(178, 178, 178);
+    background-color: rgb(214, 214, 214);
+}
+
+/*
+
+<------------------------------------------------------------------------------------------------------------------------------------------>
+<--------------------------------------------------------- SECTION: FOOTER ---------------------------------------------------------------->
+<------------------------------------------------------------------------------------------------------------------------------------------>
+
+*/
+
+footer{
+    position: relative;
+    left:20px;
+}
+
+/*
+
+<------------------------------------------------------------------------------------------------------------------------------------------>
+<--------------------------------------------------------- SECTION: INDEX ----------------------------------------------------------------->
+<------------------------------------------------------------------------------------------------------------------------------------------>
+
+*/
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1{
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+select{
+    padding: 6px;
+    cursor: pointer;
+}
+
+.selection form{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 170px 170px 80px;
+    gap: 10px;
+}
+
+.selection form button{
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    border: 1px solid rgb(178, 178, 178);
+    background-color: rgb(214, 214, 214);
+}
+
+.selection{
+    width: 100%;
+    max-width: 570px;
+    margin-bottom: 0px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cure{
+    margin:0;
+    width: auto;
+    padding: 20px;
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 8px;
+}
+
+.cure .line{
+    width: 570px;
+    height: 1px;
+    background-color: rgb(215, 215, 215);
+    margin-bottom: 20px;
+}
+
+.cure h2{
+    margin-bottom: 10px;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    height: 60px;
+}
+
+.cure p{
+    margin-bottom: 10px;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*
+
+<------------------------------------------------------------------------------------------------------------------------------------------>
+<--------------------------------------------------------- SECTION: UPDATE ---------------------------------------------------------------->
+<------------------------------------------------------------------------------------------------------------------------------------------>
+
+*/
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#search{
+    width: 500px;
+    padding: 10px 10px;
+    background-color: white;
+    font-size: medium;
+    color: black;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+}
+
+
+form{
+    all: unset;
+}
+
+#update{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: 290px;
+    overflow: hidden;
+    transition: height 0.8s ease;
+}
+
+.update{
+    width: 400px;
+    height: 290px;
+}
+
+.update:last-child{
+    margin: 0;
+}
+
+.loadmore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#load{
+    margin-bottom: 150px;
+    margin-top: 70px;
+    width: 100px;
+    font-size: medium;
+    padding: 10px 10px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#result{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    overflow: hidden;
+}
+
+.edit{
+    width: 120px;
+    font-size: medium;
+    padding: 9px 7px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete{
+    border: 1px solid red;
+    transition: all 0.3s ease;
+}
+
+.delete:hover{
+    background-color: red;
+    border: 1px solid red;
+    color: white;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white(0, 0, 0, 0.5);
+    display: flex;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.modal-content {
+    border: 1px solid lightgray;
+    background-color: white;
+    padding: 20px;
+    padding-top: 10px;
+    height: 300px;
+    border-radius: 5px;
+    width: 480px;
+    overflow-y: auto;
+}
+
+.modal-content input{
+    width: 95%;
+    background-color: white;
+    border: 1px solid lightgray;
+    color: black;
+    font-size: large;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.modal-content button{
+    width: 100px;
+    font-size: medium;
+    padding: 9px 7px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/*
+
+<------------------------------------------------------------------------------------------------------------------------------------------>
+<--------------------------------------------------------- SECTION: ADD ------------------------------------------------------------------->
+<------------------------------------------------------------------------------------------------------------------------------------------>
+
+*/
+
+#add{
+    height: auto;
+}
+
+#add input{
+    padding: 5px;
+}
+
+#add button{
+    display: block;
+    margin: 0px auto;
+}
+
+.success{
+    color: lightgreen;
+    margin-bottom: 20px;
+}
+
+.unsuccess{
+    color: red;
+    margin-bottom: 20px;
+}
+
+
+/*
+<--------------------------------------------------------- DARK MODE ----------------------------------------------------------------->
+*/
+
+.dark{
+    background-color: black;
+    color: white;
+}
+
+body.dark button{
+    background-color: black;
+    color: white;
+}
+
+body.dark .Theme{
+    background-color: black;
+}
+
+body.dark a{
+    color: white;
+}
+
+body.dark .Theme:hover{
+    background-color: rgb(64, 64, 64);
+}
+
+body.dark img{
+    filter: invert(0);
+}
+
+body.dark button:hover{
+    background-color: rgb(64, 64, 64);
+}
+
+body.dark select{
+    background-color: black;
+    color: white;
+}
+
+body.dark #search{
+    background-color: black;
+    color: white;
+}
+
+body.dark .modal-content {
+background-color: black;
+}
+
+body.dark #updateModal input{
+    background-color: black;
+    color: white;;
+}
+
+body.dark #add input{
+    background-color: black;
+    color: white;
+}
+
+body.dark .delete:hover{
+    background-color: red;
+    border: 1px solid red;
+}
+
+body.dark ::selection{
+    background-color: white;
+    color: black;
+}
+
+::selection{
+    background-color: rgba(0, 0, 0, 0.596);
+    color: white;
+}
