@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+<main style="<%= locals.data ? 'margin-top: 100px;' : 'margin-top:150px;' %>">
+    <div class="selection">
+        <h1>Let 's find a cure for your boredom 😎</h1>
+        <form action="/" method="post">
+            <select name="Category">
+                <option value="">Random Category</option>
+                <% cat.forEach(element => { %>
+                    <option value="<%= element %>" <%= selectedcategory === element ? 'selected' : '' %>><%= element %></option>
+                    <% }); %>
+
+            </select>
+            <select name="people">
+                <option value="" <%= selectedpeople === "" ? 'selected' : '' %>>Any number of people</option>
+                <option value="1" <%= selectedpeople === "1" ? 'selected' : '' %>>1</option>
+                <option value="2" <%= selectedpeople === "2" ? 'selected' : '' %>>2</option>
+                <option value="3" <%= selectedpeople === "3" ? 'selected' : '' %>>3</option>
+                <option value="4" <%= selectedpeople === "4" ? 'selected' : '' %>>4</option>
+                <option value="5" <%= selectedpeople === "5" ? 'selected' : '' %>>5</option>
+                <option value="6" <%= selectedpeople === "6" ? 'selected' : '' %>>6</option>
+                <option value="7" <%= selectedpeople === "7" ? 'selected' : '' %>>7+</option>
+            </select>
+            <button type="submit">Cure it!</button>
+        </form>
+    </div>
+    <% if(locals.data){ %>
+    <div class="cure">
+        <h2><%= data.activity %></h2>
+        <div class="line"></div>
+        <p>Participants: <%= data.participants %></p>
+        <p>Category: <%= data.type %></p>
+        <p>Difficulty: <%= data.difficulty %></p>
+        <p>Duration: <%= data.duration %></p>
+    </div>
+    <% } %>
+</main>
+<%- include("partials/footer.ejs") %>

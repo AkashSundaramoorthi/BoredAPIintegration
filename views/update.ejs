@@ -1,0 +1,57 @@
+<%- include("partials/header.ejs") %>
+<div class="search">
+    <input type="search" name="search" id="search" placeholder="Search for an activity: ">
+</div>
+<main id="update">
+    <% datas.forEach(data => { %>
+        <% if(data) { %>
+        <div class="cure update">
+            <h2 style="margin-bottom: 20px;height: 50px;"><%= data.activity %></h2>
+            <div class="line" style="width:356px;margin-left:0px;position: relative;"></div>
+            <p>Participants: <%= data.participants %></p>
+            <p>Category: <%= data.type %></p>
+            <p>Difficulty: <%= data.difficulty %></p>
+            <p>Duration: <%= data.duration %></p>
+            <button class="edit upd" value="<%= data.key %>" id="edit">Update cure</button>
+            <form action="/delete" method="post">
+                <button class="edit delete" value="<%= data.key %>" name="delete">Delete cure</button>
+            </form>
+        </div>
+        <% } %>
+    <% });%>
+</main>
+
+<div id="result">
+
+</div>
+
+<div class="loadmore">
+<button id="load">Load more</button>
+</div>
+
+<div id="updateModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h1 style="margin-top: 10px;">Update a cure</h1>
+        <form action="/update" method="post">
+            <select id="select" style="margin-bottom: 20px;">
+                <option>Select an option </option>
+                <option>Activity</option>
+                <option>Participants</option>
+                <option>Category</option>
+                <option>Difficulty</option>
+                <option>Duration</option>
+            </select>
+            <br>
+            <input type="hidden" name="id" id="modalId">
+            <label style="display: none;" id="modalActivity">Activity: <input type="text" name="activity"></label>
+            <label style="display: none;" id="modalParticipants">Participants: <input type="number" name="participants"></label>
+            <label style="display: none;" id="modalCategory">Category: <input type="text" name="type"></label>
+            <label style="display: none;" id="modalDifficulty">Difficulty: <input type="text" name="difficulty"></label>
+            <label style="display: none;" id="modalDuration">Duration: <input type="text" name="duration"><br></label>
+            <button type="submit" class="save">Save</button>
+            <button type="button" id="closeModal">Close</button> 
+        </form>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

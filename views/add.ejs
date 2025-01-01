@@ -1,0 +1,19 @@
+<%- include("partials/header.ejs") %>
+
+<main>
+<div class="modal-content" id="add">
+    <h1>Add a cure</h1>
+    <form action="/add" method="post">
+        <label>Activity: <input type="text" name="activity"></label>
+        <label>Participants: <input type="number" name="participants"></label>
+        <label>Category: <input type="text" name="type"></label>
+        <label>Difficulty: <input type="text" name="difficulty"></label>
+        <label>Duration: <input type="text" name="duration"><br></label>
+        <p class="success" style="<%= page === 'added' ?  '' : 'display: none;' %>">Successfully added!</p>
+        <p class="unsuccess" style="<%= page === 'notadded' ?  '' : 'display: none;' %>">This cure already exists!</p>
+        <button type="submit">Add</button>
+    </form>
+</div> 
+</main>
+
+<%- include("partials/footer.ejs") %>
