@@ -9,7 +9,7 @@ $('#load').click(function () {
 
 $(document).ready(function () {
     // Fetch the data from your server
-    $.get("http://localhost:8000/all", function (data) {
+    $.get("https://bored-api-lz1n.vercel.app/all", function (data) {
         datas = data;
     }).fail(function () {
         console.error("Failed to fetch data from localhost:8000/all");
