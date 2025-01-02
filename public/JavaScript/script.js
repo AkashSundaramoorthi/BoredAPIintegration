@@ -7,29 +7,33 @@ $('#load').click(function () {
 
     var datas = [];
 
-$(document).ready(function () {
-    // Fetch the data from your server
-    $.get("https://bored-api-lz1n.vercel.app/all", function (data) {
-        datas = data;
-    }).fail(function () {
-        console.error("Failed to fetch data from https://bored-api-lz1n.vercel.app/all");
-    });
+// Fetch the data
+$.get("https://bored-api-lz1n.vercel.app/all", function (data) {
+    datas = data;
+}).fail(function () {
+    console.error("Failed to fetch data from the API.");
+});
 
-    // Listen for input in the search box
-    $("#search").on('input', function () {
-        let query = $(this).val().toLowerCase();
+// Listen for input in the search box
+$("#search").on('input', function () {
+    let query = $(this).val().toLowerCase();
 
-        if (query.length > 0) {
-            $('#update').hide();
-            $('#load').hide();
-            var find = datas.filter(cures => cures.activity.toLowerCase().includes(query));
-            displayResults(find);
-        } else {
-            $('#update').show();
-            $('#load').show();
-            $('#result').empty();
-        }
-    });
+    if (query.length > 0) {
+        $('#update').hide();
+        $('#load').hide();
+        var find = datas.filter(cures => {
+            // Check if 'activity' exists and is a string
+            if (cures.activity && typeof cures.activity === 'string') {
+                return cures.activity.toLowerCase().includes(query);
+            }
+            return false; // If 'activity' is undefined or not a string, return false
+        });
+        displayResults(find);
+    } else {
+        $('#update').show();
+        $('#load').show();
+        $('#result').empty();
+    }
 });
 
 // Function to display the filtered results
@@ -41,23 +45,23 @@ function displayResults(results) {
     } else {
         results.forEach(function(result) {
             $('#result').append(`
-    <div class="cure update">
-        <h2 style="margin-bottom: 20px;height: 50px;">${result.activity}</h2>
-        <div class="line" style="width:356px;margin-left:0px;position: relative;"></div>
-        <p>Participants: ${result.participants}</p>
-        <p>Category: ${result.type}</p>
-        <p>Difficulty: ${result.difficulty}</p>
-        <p>Duration: ${result.duration}</p>
-        <button class="edit upd" value="${result.key}" id="edit">Update cure</button>
-        <form action="/delete" method="post">
-            <button class="edit delete" value="${result.key}" name="delete">Delete cure</button>
-        </form>
-    </div>
-`);
-
+                <div class="cure update">
+                    <h2 style="margin-bottom: 20px;height: 50px;">${result.activity}</h2>
+                    <div class="line" style="width:356px;margin-left:0px;position: relative;"></div>
+                    <p>Participants: ${result.participants}</p>
+                    <p>Category: ${result.type}</p>
+                    <p>Difficulty: ${result.difficulty}</p>
+                    <p>Duration: ${result.duration}</p>
+                    <button class="edit upd" value="${result.key}" id="edit">Update cure</button>
+                    <form action="/delete" method="post">
+                        <button class="edit delete" value="${result.key}" name="delete">Delete cure</button>
+                    </form>
+                </div>
+            `);
         });
     }
 }
+
 
 // Function to display popup
 // Function to display popup
