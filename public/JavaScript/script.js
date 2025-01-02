@@ -12,7 +12,7 @@ $(document).ready(function () {
     $.get("https://bored-api-lz1n.vercel.app/all", function (data) {
         datas = data;
     }).fail(function () {
-        console.error("Failed to fetch data from localhost:8000/all");
+        console.error("Failed to fetch data from https://bored-api-lz1n.vercel.app/all");
     });
 
     // Listen for input in the search box
@@ -40,16 +40,32 @@ function displayResults(results) {
         $('#result').html('<p>No results found</p>');  // If no results, show a message
     } else {
         results.forEach(function(result) {
-            $('#result').append('<div class="cure update"><h2 "margin-bottom: 20px;height: 50px;">' + result.activity + '</h2><div class="line" style="width:356px;margin-left:0px;position: relative;"></div><p> Participants: ' + result.participants + '</p><p>Category: '+result.type+'</p><p>Difficulty: '+result.difficulty+'</p><p>Duration: '+result.duration+'</p><form action="/update-cure" method="post"><input type="hidden" name="id" value="'+ result.key +'"><button class="edit">Update cure</button></form> </div>');
+            $('#result').append(`
+    <div class="cure update">
+        <h2 style="margin-bottom: 20px;height: 50px;">${result.activity}</h2>
+        <div class="line" style="width:356px;margin-left:0px;position: relative;"></div>
+        <p>Participants: ${result.participants}</p>
+        <p>Category: ${result.type}</p>
+        <p>Difficulty: ${result.difficulty}</p>
+        <p>Duration: ${result.duration}</p>
+        <button class="edit upd" value="${result.key}" id="edit">Update cure</button>
+        <form action="/delete" method="post">
+            <button class="edit delete" value="${result.key}" name="delete">Delete cure</button>
+        </form>
+    </div>
+`);
+
         });
     }
 }
 
 // Function to display popup
+// Function to display popup
 $(document).ready(function() {
-    $('.upd').click(function () {
+    // Use event delegation for dynamically added elements
+    $(document).on('click', '.upd', function() {
         $('#updateModal').fadeIn();
-        $('#modalId').val( $(this).val());
+        $('#modalId').val($(this).val());
     });
 
     $('#closeModal').click(function() {
@@ -57,6 +73,7 @@ $(document).ready(function() {
         $('#modalId').val('');
     });
 });
+
 
 // Function to make the input field required
 $(document).ready(function() {
