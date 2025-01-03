@@ -3,6 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
 /*
 
 <------------------------------------------------------------------------------------------------------------------------------------------>
@@ -20,6 +27,7 @@ body{
     margin: 0;
     display: flex;
     flex-direction: column;
+
     height: 100%;
 }
 
@@ -31,6 +39,10 @@ header{
 }
 
 .nav_links{
+    display: flex;
+}
+
+.nav-content{
     display: flex;
 }
 
@@ -78,6 +90,36 @@ header{
     background-color: rgb(214, 214, 214);
 }
 
+/* Hamburger Menu */
+.hamburger{
+    cursor: pointer;
+    display: none;
+    border: none;
+    height: 37px;
+    background-color: transparent;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+.hamburger .bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: black;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
+body.dark .hamburger .bar{
+    background-color: white;
+}
+
+
+
+
 /*
 
 <------------------------------------------------------------------------------------------------------------------------------------------>
@@ -122,9 +164,11 @@ select{
 
 .selection form{
     width: 100%;
-    display: grid;
-    grid-template-columns: 170px 170px 80px;
+    display: flex;
+    flex-direction: row;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .selection form button{
@@ -143,6 +187,7 @@ button:hover{
     width: 100%;
     max-width: 570px;
     margin-bottom: 0px;
+    gap: 10px;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -152,14 +197,14 @@ button:hover{
 
 .cure{
     margin:0;
-    width: auto;
+    width: 400px;
     padding: 20px;
     border: 1px solid rgb(215, 215, 215);
     border-radius: 8px;
 }
 
 .cure .line{
-    width: 570px;
+    width: 100%;
     height: 1px;
     background-color: rgb(215, 215, 215);
     margin-bottom: 20px;
@@ -181,6 +226,10 @@ button:hover{
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+}
+
+@media (max-width: 768px) {
+
 }
 
 /*
@@ -329,6 +378,7 @@ form{
     border-radius: 5px;
 }
 
+
 /*
 
 <------------------------------------------------------------------------------------------------------------------------------------------>
@@ -339,6 +389,7 @@ form{
 
 #add{
     height: auto;
+    width: 500px;
 }
 
 #add input{
@@ -411,7 +462,7 @@ background-color: black;
 
 body.dark #updateModal input{
     background-color: black;
-    color: white;;
+    color: white;
 }
 
 body.dark #add input{
@@ -432,4 +483,115 @@ body.dark ::selection{
 ::selection{
     background-color: rgba(0, 0, 0, 0.596);
     color: white;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .hamburger{
+        display: block;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-content ul{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    /* Align the nav-content to the right side and off-screen initially */
+    .nav-content {
+        align-items: center;
+        display: none; /* Hide by default */
+        position: fixed; /* Fix position on the screen */
+        top: 60px;
+        right: 0; /* Initially off-screen to the right */
+        width: 100%; /* Adjust width of the sidebar */
+        height: 90%;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: auto;
+        padding: 10px;
+        box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease; /* Slide-in effect */
+    }
+    
+
+    .nav-content.active, .nav-content.active a{
+        left: 0; /* Move to the right side of the screen */
+        width: 100%;
+        display: flex; 
+        flex-direction: column;
+        flex-wrap: wrap;
+        /* Show the nav content */
+    }
+
+    #add{
+        width: 100%;
+    }
+
+    /* Full-width buttons in the active menu */
+    .nav-content a{
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav_links ul button, 
+    .nav_links .Theme, 
+    .nav_links ul li,
+    .nav_links ul a {
+        width: 100%;
+    }
+
+    .nav_links button{
+        background-color: white;
+    }
+
+    .nav_links ul, .nav-content {
+        width: 100%;
+        margin-right: 10px;
+        padding: 0%;
+    }
+
+    .nav_links a{
+        margin-right: 10px;
+        width: 100%;
+    }
+    .cure{
+        width: 300px;
+    }
+
+    .selection form{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .selection form button{
+        top: 10px;
+    }
+
+    body.dark .selection form button{
+        background-color: black;
+        color: white;
+    }
+
+    #updateModal{
+        width: 100%;
+    }
+
+    #updateModal .modal-content{
+        width: 100%;
+    }
 }
