@@ -1,4 +1,3 @@
-  //Load more function
 $('#load').click(function () {
     let currentHeight = parseInt($('#update').css('height'));
     let newHeight = currentHeight + 620; 
@@ -11,7 +10,7 @@ $('#load').click(function () {
 $.get("https://bored-api-lz1n.vercel.app/all", function (data) {
     datas = data;
 }).fail(function () {
-    console.error("Failed to fetch data from the API.");
+    console.error("Failed to fetch data from the API.");  
 });
 
 // Listen for input in the search box
@@ -47,7 +46,7 @@ function displayResults(results) {
             $('#result').append(`
                 <div class="cure update">
                     <h2 style="margin-bottom: 20px;height: 50px;">${result.activity}</h2>
-                    <div class="line" style="width:356px;margin-left:0px;position: relative;"></div>
+                    <div class="line" style="margin-left:0px;position: relative;"></div>
                     <p>Participants: ${result.participants}</p>
                     <p>Category: ${result.type}</p>
                     <p>Difficulty: ${result.difficulty}</p>
@@ -117,3 +116,14 @@ $("#Theme").click(function () {
     });
 
 
+
+    $(document).ready(function() {
+        const hamburger = $('#hamburger');
+        const navContent = $('#nav-content');
+    
+        hamburger.on('click', function() {
+            navContent.toggleClass('active');
+            hamburger.toggleClass('open');
+        });
+    });
+    
