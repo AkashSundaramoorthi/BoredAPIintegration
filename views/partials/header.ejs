@@ -7,22 +7,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
-    <link href="/CSS/main.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
     <title>I'm Bored 🥱</title>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
-        const selectedTheme = localStorage.getItem('theme')
-        document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+        const selectedTheme = localStorage.getItem('theme');
+        document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove']('darkTheme');
     </script>
-    <header> 
+
+    <header>
         <h1>AKASH</h1>
         <nav class="nav_links">
-                <button class="Theme" id="Theme"><img src="/images/dark-light.svg"></button>
-                <a href="/"><button class="Theme"><img src="/images/home.svg"></button></a>
-            <ul>
-                <li><a href="/update"><button>Update a cure </button></a></li>
-                <li><a href="/add"><button style="margin-right: 0px;">Add a cure</button> </a></li>
-            </ul>
+            <div class="nav-content" id="nav-content">
+                <button class="Theme" id="Theme"><img src="/images/dark-light.svg" alt="Toggle Theme"></button>
+                <a href="/"><button class="Theme"><img src="/images/home.svg" alt="Home"></button></a>
+                <ul>
+                    <li><a href="/update"><button>Update a cure</button></a></li>
+                    <li><a href="/add"><button style="margin-right: 0px;">Add a cure</button></a></li>
+                </ul>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </nav>
-    </header>   
+    </header>
+
+</body>
+</html>
