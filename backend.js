@@ -4,16 +4,16 @@ const path = require('path'); // Add this line for path module
 const PORT = 3000;
 const app = express();
 
-// Set your API URL, ideally from environment variables
-const api_url = 'https://bored-api-lz1n.vercel.app/';  // Correct API URL assignment
+
+const api_url = 'http://localhost:8000/'; 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public/"));
 var categories = ['Creative', 'Wellness', 'Cooking', 'Educational', 'Outdoor', 'Fitness', 'Community', 'Entertainment', 'Productive'];
 var participants = ['1-2', '1', '1-4', '1-10', '2-6', '2+', '1-6', '2-10'];
 
-app.set('views', path.join(__dirname, 'views')); // Ensure views path is set
-app.set('view engine', 'ejs');  // Set EJS as the templating engine
+app.set('views', path.join(__dirname, 'views')); 
+app.set('view engine', 'ejs'); 
 
 app.get('/', (req, res) => {
     res.render('index.ejs', {
@@ -103,9 +103,8 @@ app.post('/add', async (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-    var Category = req.body.Category;
-    var people = req.body.people;
-
+    const Category = req.body.Category;
+    const people = req.body.people;
     try {
         if (!Category && !people) {
             const response = await axios.get(`${api_url}random`);
@@ -114,21 +113,20 @@ app.post("/", async (req, res) => {
                 cat: categories,
                 par: participants,
                 selectedpeople: null,
-                page: "home",
                 selectedcategory: null,
+                page: "home",
             });
         }
-        if (people && Category) {
-            const response = await axios.get(
-                `${api_url}cures/filter?type=${Category}&participants=${people}`
-            );
+        if (Category && people) {
+            console.log(`${api_url}cures/filter?type=${Category}&participants=${people}`);
+            const response = await axios.get(`${api_url}cures/filter?type=${Category}&participants=${people}`);
             return res.render('index.ejs', {
                 data: response.data,
                 cat: categories,
                 par: participants,
-                page: "home",
                 selectedcategory: Category,
                 selectedpeople: people,
+                page: "home",
             });
         }
         if (Category) {
@@ -138,10 +136,10 @@ app.post("/", async (req, res) => {
             return res.render('index.ejs', {
                 data: response.data,
                 cat: categories,
-                page: "home",
                 par: participants,
                 selectedpeople: null,
                 selectedcategory: Category,
+                page: "home",
             });
         }
         if (people) {
@@ -151,10 +149,10 @@ app.post("/", async (req, res) => {
             return res.render('index.ejs', {
                 data: response.data,
                 cat: categories,
-                page: "home",
                 par: participants,
                 selectedcategory: null,
                 selectedpeople: people,
+                page: "home",
             });
         }
     } catch (error) {
@@ -163,9 +161,14 @@ app.post("/", async (req, res) => {
             error: "No activities that match your criteria.",
             cat: categories,
             par: participants,
+            selectedcategory: null, 
+            selectedpeople: null, 
+            page: "home",
+            message:"There is no cure for this selected category and people",
         });
     }
 });
+
 
 app.post("/delete", async (req, res) => {
     const key = parseInt(req.body.delete);
