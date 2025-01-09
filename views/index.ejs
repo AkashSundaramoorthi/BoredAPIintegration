@@ -33,5 +33,8 @@
         <p>Duration: <%= data.duration %></p>
     </div>
     <% } %>
+    <% if(locals.message){ %>
+        <h2><%= message %></h2>
+    <% } %>
 </main>
 <%- include("partials/footer.ejs") %>
