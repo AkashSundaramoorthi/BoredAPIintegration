@@ -5,7 +5,7 @@ const PORT = 3000;
 const app = express();
 
 
-const api_url = 'http://localhost:8000/'; 
+const api_url = 'https://bored-api-lz1n.vercel.app/'; 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public/"));
